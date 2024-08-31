@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/store';
 import { fetchUsers, setFilter } from '../slices/usersSlice';
-import { Table, TableHead, TableRow, TableCell, TableBody, CircularProgress } from '@mui/material';
+import { Table, TableBody, CircularProgress } from '@mui/material';
 import UserRow from './UserRow';
 import UserFilters from './UserFilters';
+import UserTableHead from './UserTableHead';
  
 
 const UserTable: React.FC = () => {
@@ -37,15 +38,8 @@ const UserTable: React.FC = () => {
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <Table className="min-w-full bg-transparent">
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: 'bold', color: 'white' }}>Name</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', color: 'white' }}>Username</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', color: 'white' }}>Email</TableCell>
-                <TableCell sx={{ fontWeight: 'bold', color: 'white' }}>Phone</TableCell>
-              </TableRow>
-            </TableHead>
+          <Table className="min-w-full bg-transparent">         
+            <UserTableHead />
             <TableBody>
               {filteredUsers.map((user) => (
                 <UserRow key={user.id} user={user} />
